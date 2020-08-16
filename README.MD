@@ -50,3 +50,24 @@ Reads a varint and increments offset
 Writes a varint with the size of the string and the string and increments offset
 - ``func (p *Packet) ReadString() string`` \
 Reads a varint then reads a string with size being the read varint
+
+## EncryptionHolder
+
+```
+type EncryptionHolder struct {
+	LocalBoundCryptoStream cipher.Stream
+	RemoteBoundCryptoStream cipher.Stream
+}
+```
+
+Can be created using:
+- ``func NewEncryptionHolder(sharedSecret []byte) EncryptionHolder`` \
+Shared secret is the byte array sent by the server encrypted using the client's public key
+
+Methods:
+- ``func (c EncryptionHolder) EncryptPacket(p Packet) []byte`` \
+Encrypts packet ``p`` with the outbound AES stream into a byte array
+
+- ``func (c EncryptionHolder) DecryptPacket(p []byte) Packet`` \
+Decrypts byte array ``p`` with the inbound AES stream into a packet
+
