@@ -2,6 +2,10 @@
 
 ### For more information on varints see: https://wiki.vg/Protocol#VarInt_and_VarLong
 
+## Installation
+Install this package by running
+``go get -u github.com/Sascha-T/mcpackets``
+
 ## Packet
 ```
 type Packet struct {
